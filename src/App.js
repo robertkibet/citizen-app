@@ -1,8 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import PersonsList from './PersonsList';
 
-const App = () => {
-  return <div className="App">test</div>;
-};
+const App = () => (
+    <div className="App">
+      <PersonsList />
+    </div>
+);
 
 export default App;

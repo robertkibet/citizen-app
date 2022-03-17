@@ -2,10 +2,9 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true,
-    "jest/globals": true
+    "node": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -13,13 +12,24 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react"],
   "rules": {
     "indent": "error",
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    // https://stackoverflow.com/a/70051760 this rule react/function-component-definition is critical
+    // otherwise airbnb update will make functions look scary, but it's not, it just looks weird if
+    // you have a function component looking like function MyComponent() { return <div>...</div>}
+    // instead of an arrow function looking like const MyComponent = () => <div>...</div>
+    // you can agree the second looks cleaner, so we need this rule below to be in place.
+    // Read stackoverflow answer attached above for more info.
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
   }
 }
